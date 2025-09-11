@@ -10,21 +10,23 @@ public class Producto {
     private double precio;
     
     // Constructor - crear producto 
-    public Producto(String nombre, String codigo, String categoria, int stock, double precio){
-    this.nombre = nombre;
+    public Producto(String codigo, String nombre, String categoria, double precio, int stock ){
     this.codigo = codigo;
+    this.nombre = nombre;
     this.categoria = categoria;
-    this.stock = stock;
     this.precio = precio;
+    this.stock = stock;
+
     }
     
     // Constructor vacío
     public Producto(){
+    this.codigo = "";    
     this.nombre = "";
-    this.codigo = "";
     this.categoria = "";
-    this.stock = 0;
     this.precio = 0.0;
+    this.stock = 0;
+
     }
      
     // Getters
@@ -88,19 +90,20 @@ public class Producto {
      return stock >= cantidad;
      }
      
-     // Conversion del producto 
+     // Conversion a string para mostrar info
      public String convertirString(){
-     return String.format("Nombre: %-20s | Codigo: %-20s | Categoria: %-20s | Stock: %d | Precio: Q%.2f");
+     return String.format("Código: %-20s | Nombre: %-20s | Categoria: %-20s | Precio: Q%.2f | Stock: %d");
      }
      
      //Mostrar info 
      public void mostrarInformación(){
          System.out.println("-----------INFORMACION-----------------");
-         System.out.println("Nombre: " + nombre );
          System.out.println("Código: " + codigo );
+         System.out.println("Nombre: " + nombre );
          System.out.println("Categoría:  " + categoria );
-         System.out.println("Stock disponible: "+ stock + " unidades");
          System.out.println("Precio: Q"+ String.format("%.2f", precio));
+         System.out.println("Stock disponible: "+ stock + " unidades");
+
          
      }
              

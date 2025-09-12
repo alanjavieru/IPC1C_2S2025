@@ -16,7 +16,7 @@ public class Proyecto1 {
         System.out.println("Porfavor ingrese su nombre: ");
         String usuario = teclado.nextLine();
 
-        // Bienvenida al menú del sistema
+        // Bienvenida al menú del sistemaAA
         System.out.println("Bienvenido al menú del sistema " + usuario);
 
         int opcion = 0;
@@ -153,6 +153,7 @@ public class Proyecto1 {
         int opcionBusqueda = validarOpcion();
         teclado.nextLine();
 
+
         switch (opcionBusqueda) {
             case 1:
                 System.out.println("Ingrese el código del producto: ");
@@ -164,15 +165,27 @@ public class Proyecto1 {
                     System.out.println("No se encontró un producto con el código: "+codigo);
                 }
                 break;
+            
             case 2: 
                 System.out.println("Ingrese el nombre del producto: ");
                 String nombre = teclado.nextLine().trim();
-                Inventario.buscarNombre(nombre);
+                producto = Inventario.buscarNombre(nombre);
+                if (producto != null){
+                producto.mostrarInformación();
+                }else{
+                    System.out.println("No se encontró un producto con el nombre: "+ nombre);
+                }
                 break;
+            
             case 3:
                 System.out.println("Ingrese la categoría");
                 String categoria = teclado.nextLine().trim();
-                Inventario.buscarCategoria(categoria);
+                producto = Inventario.buscarCategoria(categoria);
+                if (producto != null){
+                producto.mostrarInformación();
+                }else{
+                    System.out.println("No se encontró un producto de la categoría: "+ categoria);
+                }
                 break;
                 
             default:
@@ -200,7 +213,46 @@ public class Proyecto1 {
     public static void registrarVenta() {
         System.out.println("----------------- REGISTRAR VENTA -----------------");
         
+        if(Inventario.inventarioVacio()){
+            System.out.println("No hay productos en inventario");
+        return;
+        }
         
+        try{
+            System.out.println("Ingrese el código del producto a vender: ");
+            String codigoProducto = teclado.nextLine().trim();
+            
+            if (codigoProducto.isEmpty()){
+                System.out.println("El codigo no puede estar vacío");
+                return;
+            }
+            
+            // Verificar si producto existe
+            Producto producto = Inventario.buscarCodigo(codigoProducto);
+            if (producto == null){
+                System.out.println("No se encontró el producto con código: " + codigoProducto);
+                return;
+            }
+            
+           // Mostrar info del producto 
+            System.out.println("Producto encontrado: ");
+            producto.mostrarInformación();
+            
+            System.out.println("Ingrese la cantidad a vender: ");
+            int cantidadVendida = teclado.nextInt();
+            teclado.nextLine(); 
+            
+            if(cantidadVendida <= 0 ){
+                System.out.println("La cantidad debe ser mayor a 0");
+                return;
+            }
+            
+            // Procesar venta 
+            SistemaVentas.procesarVenta(codigoProducto, cantidadVendida);
+        }catch (Exception e){
+            System.out.println("Datos incorrectos. Intente nuevamente");
+        teclado.nextLine();
+        }
         
     }
 

@@ -92,7 +92,8 @@ public class Producto {
      
      // Conversion a string para mostrar info
      public String convertirString(){
-     return String.format("Código: %-20s | Nombre: %-20s | Categoria: %-20s | Precio: Q%.2f | Stock: %d");
+     return String.format("Código: %-20s | Nombre: %-20s | Categoria: %-20s | Precio: Q%.2f | Stock: %d",
+                    codigo, nombre, categoria, precio, stock);
      }
      
      //Mostrar info 

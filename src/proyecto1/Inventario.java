@@ -52,7 +52,7 @@ public class Inventario {
     }
     
     // Buscar por nombre
-    public static void buscarNombre(String nombre){
+    public static Producto buscarNombre(String nombre){
     boolean encontrado = false;
         System.out.println("-------- RESULTADOS --------");
         
@@ -65,11 +65,12 @@ public class Inventario {
         if(!encontrado){
             System.out.println("No se encontraron resultados con el nombre: " + nombre);
         }
+        return null;
     }
     
     
     // Buscar por categoria 
-    public static void buscarCategoria(String categoria){
+    public static Producto buscarCategoria(String categoria){
     boolean encontrado = false;
         System.out.println("-------- RESULTADOS --------");
         
@@ -82,6 +83,7 @@ public class Inventario {
         if (!encontrado){
             System.out.println("No se encontraron resultados en la categoría: " + categoria);
         }
+        return null;
     }
     
     
